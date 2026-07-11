@@ -104,11 +104,7 @@ export async function uPLoader() {
     chalk.green('2') + ' ➜ Código de 8 dígitos\n'
   )
 
-  let opt
-  while (!['1', '2'].includes(opt)) {
-    opt = await question(chalk.magentaBright('➤ Opción: '))
-  }
-  return opt
+  return "2"
 }
 
 const BOT_TYPES = [
@@ -182,7 +178,7 @@ async function startBot() {
     console.clear()
     if (LOGIN_METHOD === '2') {
       console.log(chalk.bold.redBright('\nIngrese su número de WhatsApp\n') + chalk.yellowBright('Ejemplo: +57301XXXXXXX\n'))
-      const fixed = await question(chalk.magentaBright('➤ Número: '))
+      const fixed = process.env.PHONE_NUMBER
       const phoneNumber = normalizePhoneForPairing(fixed)
       try {
         const pairing = await client.requestPairingCode(phoneNumber)
